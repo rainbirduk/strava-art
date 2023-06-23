@@ -3,9 +3,7 @@ library(rStrava)
 library(dplyr)
 
 # create api token
-app_name <- 'Bike' # chosen by user
-app_client_id  <- '109528' # an integer, assigned by Strava
-app_secret <- '95d1f334e61aedf2a0d47dd6749cd4cf0750e20a' # an alphanumeric secret, assigned by Strava
+source("data/api_credentials.r")
 
 # create the authentication token
 stoken <- httr::config(token = strava_oauth(app_name, app_client_id, app_secret, app_scope="activity:read_all"))
