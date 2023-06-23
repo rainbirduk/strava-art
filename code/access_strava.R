@@ -15,13 +15,8 @@ my_acts <- get_activity_list(stoken)
 act_data <- compile_activities(my_acts)
 sp_act_data <- act_data %>% filter(!is.na(start_latlng1))
 
-# convert to sf
-coords <- googlePolylines::decode(sp_act_data$map.summary_polyline)
-sfg <- lapply( coords, function(x) sf::st_linestring( x = as.matrix(x) ) )
-sfc <- sf::st_sfc(sfg)
-sf <- sf::st_as_sf(cbind(sp_act_data, sfc))
-
 # save as RDS
-readr::write_rds(sf, "data/spatial_activity_data.rds")
+readr::write_rds(sp_act_data, "data/spatial_activity_data.rds")
+
 
 
